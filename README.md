@@ -5,11 +5,34 @@ modules to CommonJS, specifically when the exported module uses
 This example involves the module `test.js`, which is a simple file that
 exports a string as the default value.
 
-There are two behaviors that this repository shows:
+There are two behaviors that this repository shows.
 
-- Transpiling with the `babel` CLI command returns the correct result. To see
-  this, run `npm run babel-compile`
-- Transpiling with `babel-node` yields pre-Babel6 behavior for modules. To see
-  this, run `npm run babel-node`
-- Using `babel-register` results in the same problem as `babel-node`. Execute
-  `npm run babel-register` to see this behavior
+### Correct behavior
+
+The module should be exported as:
+
+```js
+{
+  default: "foo"
+}
+```
+
+This is observed when the source file is transpiled with the `babel` CLI
+command.
+
+A handy shortcut to observe this is to run `npm run babel-compile`.
+
+### Incorrect behavior
+
+The module is exported as:
+
+```js
+"foo"
+```
+
+This can be observed in two ways: using `babel-node` or using `babel-register`.
+
+There are two shortcuts for running this:
+
+- `npm run babel-node`
+- `npm run babel-register`
